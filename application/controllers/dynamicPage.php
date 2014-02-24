@@ -8,10 +8,10 @@ class DynamicPage extends CI_Controller{
     }
 
 	public function index(){
-		$this->page();
+		$this->display_page();
 	}
 
-	public function page($pageCode="404"){
+	public function display_page($pageCode="HOME"){
 
 
 
@@ -26,14 +26,18 @@ class DynamicPage extends CI_Controller{
 
 		$result = $this->pageManager->get_page($pageCode)[0];
 		
-		$data ['title'] = $result->title;
-		$data ['content'] = $result->content;
-		$data ['template'] = $result->template;
-		$this->parser->parse('/panels/head', $data);
-		$this->parser->parse('/panels/header', $data);
-		$this->parser->parse('/template/'. $data['template'], $data);
-		$this->parser->parse('/panels/footer', $data);
-		//$this->load->view('view', $data);
+		if ($result->type =='static')
+			$this->load->view('staticPages/' . $pageCode);
+		else {
+			$data ['title'] = $result->title;
+			$data ['content'] = $result->content;
+			$data ['template'] = $result->template;
+			$this->parser->parse('/panels/head', $data);
+			$this->parser->parse('/panels/header', $data);
+			$this->parser->parse('/template/'. $data['template'], $data);
+			$this->parser->parse('/panels/footer', $data);
+
+		}
 	}
 
 	public function add_page ($code, $title, $content, $template){

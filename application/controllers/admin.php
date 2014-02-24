@@ -27,7 +27,7 @@ class Admin extends CI_Controller {
 
 	          //si la validation a échouée on redirige vers le formulaire de login
 	          if(!$this->form_validation->run()){
-	               $this->load->view('staticPages/login');
+	               $this->load->view('staticPages/LOGIN');
 	          } else {
 	               $username = $this->input->post('username');
 	               $password = $this->input->post('password');
@@ -37,7 +37,7 @@ class Admin extends CI_Controller {
 	                    redirect('admin/dashboard','refresh');
 	               } else {
 	                    $data['error_credentials'] = 'Wrong Username/Password';
-	                    $this->load->view('staticPages/login',$data);
+	                    $this->load->view('staticPages/LOGIN',$data);
 	               }
 	          }
 	     }
@@ -46,9 +46,9 @@ class Admin extends CI_Controller {
 
 	function dashboard(){
 	    if($this->userManager->isLoggedIn())
-	        $this->load->view('staticPages/admin');
+	        $this->load->view('staticPages/ADMIN');
 	    else
-	    	$this->load->view('staticPages/login');
+	    	$this->load->view('staticPages/LOGIN');
 	}
 }
 ?>
