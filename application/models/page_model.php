@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Pages_model extends CI_Model{
+class Page_model extends CI_Model{
 	
 	protected $table = 'pages';
 	protected $code;

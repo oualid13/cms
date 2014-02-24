@@ -12,22 +12,7 @@ class StaticPage extends CI_Controller{
 
 	public function home(){
 
-		
-
-		$this->load->view('home');
-
-	}
-	
-
-	public function authentication(){
-
-		 $this->load->view('authentication');
-
-	}
-	//post
-	public function login($username, $password){
-
-		 $this->load->view('authentication');
+		$this->load->view('staticPages/home');
 
 	}
 
